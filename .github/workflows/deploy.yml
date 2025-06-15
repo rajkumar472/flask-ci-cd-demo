@@ -1,0 +1,22 @@
+name: Deploy Flask App
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: 13.127.63.31
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd /home/ubuntu/flask-ci-cd-demo
+            git pull origin main
+            sudo pkill -f app.py || true
+            nohup python3 app.py &
