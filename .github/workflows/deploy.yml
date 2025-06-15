@@ -6,9 +6,13 @@ on:
 
 jobs:
   deploy:
+    name: Deploy to EC2 via SSH
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository (optional but good)
+        uses: actions/checkout@v3
+
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
         with:
