@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy to EC2 and Run Flask
+      - name: Deploy to EC2 and restart Flask
         uses: appleboy/ssh-action@master
         with:
           host: 13.233.151.233
@@ -18,9 +18,4 @@ jobs:
           script: |
             cd /home/ubuntu/flask-ci-cd-demo
             git pull origin main
-
-            # Stop any existing Flask process
-            pkill -f "python3 app.py" || true
-
-            # Start Flask in the background
-            /home/ubuntu/flask-ci-cd-demo/flaskenv/bin/python3 app.py > flask.log 2>&1 &
+            sudo systemctl restart flaskapp
