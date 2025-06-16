@@ -20,5 +20,4 @@ jobs:
             git pull origin main
             flaskenv/bin/pip install flask
             sudo pkill -f app.py || true
-            nohup sudo flaskenv/bin/python3 app.py > output.log 2>&1 &
-            exit 0
+            nohup flaskenv/bin/python3 app.py > output.log 2>&1 &
