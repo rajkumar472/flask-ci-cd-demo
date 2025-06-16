@@ -18,7 +18,7 @@ jobs:
           script: |
             cd /home/ubuntu/flask-ci-cd-demo
             git pull origin main
-            source flaskenv/bin/activate
             sudo pkill -f app.py || true
-            sudo nohup python3 app.py > output.log 2>&1 &
+            source flaskenv/bin/activate
+            nohup sudo python3 app.py > output.log 2>&1 &
             exit 0
